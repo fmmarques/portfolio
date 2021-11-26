@@ -1,0 +1,8 @@
+## ROI (sem cupoes // dividendos):
+     The first step is to list each type of asset in a spreadsheet, along with their calculated ROI, and any dividends, cash flows, management fees, and other figures relevant to the cost or returns of those assets. You'll need to know the following:
+
+    The total cost of each investment including any fees and commissions
+    The historical returns of each investment
+    The portfolio weight of each investment, represented as a percentage of the portfolio's total value.
+
+
