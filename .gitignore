@@ -1,4 +1,7 @@
+#!/usr/bin/false
+# custom for this repo
 venv
+poetry.lock
 
 # Created by https://www.toptal.com/developers/gitignore/api/Vim,python,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=Vim,python,pycharm
