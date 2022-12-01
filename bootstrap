@@ -1,0 +1,47 @@
+#!/usr/bin/false
+# This file is meant to be sourced into the shell and not executed.
+
+
+function portfolio.bootstrap {
+    local VENV="venv"
+    local REQS="requirements.txt"
+    local LOG=".bootstrap.log"
+    local OUTPUT="bootstrap.log"
+
+    if [[ ! -e "${REQS}" ]] ; then
+        echo "No ${REQS} file found. Cannot continue with bootstrap."
+        return -1
+    fi ;
+
+    if [[ ! -e "./${VENV}" ]] ; then
+        echo "[*] Creating virtual environment in '${VENV}'."
+        python3 -m venv ${VENV} &>> ${LOG}
+        if [ $? -ne 0 ]; then echo "[!] Some error happened. Check ${OUT}."; mv ${LOG} ${OUT} ; return $? ; fi ;
+        source ./venv/bin/activate
+        touch -m ${REQS}
+    else
+        echo "[*] Found an environment at ${VENV}. Using it."
+        source ./venv/bin/activate
+    fi ;
+
+
+    if [[ "${REQS}" -nt "${VENV}" ]] ; then
+        echo "[*] The requirements are newer than the virtual environment:"
+        echo "[**] Checking for a newer version of pip."
+
+        pip install --upgrade pip &>> ${LOG}
+        if [ $? -ne 0 ]; then echo "[!] Some error happened. Check ${OUT}."; mv ${LOG} ${OUT} ; return $? ; fi ;
+
+        echo "[**] Installing missing or updated dependencies."
+        pip install -r requirements.txt &>> ${LOG}
+        if [ $? -ne 0 ]; then echo "[!] Some error happened. Check ${OUT}."; mv ${LOG} ${OUT} ; return $? ; fi ;
+        touch -m ${VENV}
+    fi ;
+
+    [ ! -e "${LOG}" ] || rm ${LOG}
+    echo "[*] Done."
+    return 0
+}
+
+portfolio.bootstrap
+
