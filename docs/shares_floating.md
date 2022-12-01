@@ -1,0 +1,2 @@
+Shares Floating: Floating stock is the number of shares available for trading of a particular stock. Low float stock are those with a low number of shares. 
+Floating stock is calculated by subtracting closely held shares and restricted stock from a firm's total outstanding shares. Closely held shares are those owned by insiders, major shareholders and employees. Restricted stock refers to insider shares that cannot be traded because of a temporary restriction such as the lock-up period after an initial public offering (IPO)

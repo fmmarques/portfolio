@@ -1,0 +1,2 @@
+Shares outstanding: A company's share outstanding are the total number of shares issued and actively held by shareholders. A company may provide executives with stock options that allow conversion to stock but such stock benefits are not included in shares outstanding until such stocks benefits are fully issued. Stock benefits are one consideration in the number of authorized shares as they count in the authorized share bucket
+

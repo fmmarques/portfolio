@@ -4,12 +4,12 @@ with open("README.md", "r", encoding="utf-8") as fh:
 	long_description = fh.read()
 
 	setuptools.setup(
-	    name="portfolio",_
+	    name="portfolio",
 	    version="0.0.1",
 	    author="Frederico Marques",
             author_email="frederico.almeida.marques@gmail.com",
 	    description="A small portfolio management",
-	    long_description=description,
+            long_description="",
 	    long_description_content_type="text/markdown",
 	    url="https://github.com/pypa/sampleproject",
 	    project_urls={
