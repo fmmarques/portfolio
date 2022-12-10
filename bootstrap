@@ -1,6 +1,27 @@
 #!/usr/bin/false
 # This file is meant to be sourced into the shell and not executed.
 
+function portfolio.requirements {
+    local VENV="venv"
+    local REQS="requirements.txt"
+    local LOG=".bootstrap.log"
+    local OUTPUT="bootstrap.log"
+
+    if [[ "${REQS}" -nt "${VENV}" ]] ; then
+        echo "[*] The requirements are newer than the virtual environment:"
+        echo "[**] Checking for a newer version of pip."
+
+        pip install --upgrade pip &>> ${LOG}
+        if [ $? -ne 0 ]; then echo "[!] Some error happened. Check ${OUT}."; mv ${LOG} ${OUT} ; return $? ; fi ;
+
+        echo "[**] Installing missing or updated dependencies."
+        pip install -r requirements.txt &>> ${LOG}
+        if [ $? -ne 0 ]; then echo "[!] Some error happened. Check ${OUT}."; mv ${LOG} ${OUT} ; return $? ; fi ;
+        touch -m ${VENV}
+    fi ;
+
+
+}
 
 function portfolio.bootstrap {
     local VENV="venv"
@@ -24,19 +45,7 @@ function portfolio.bootstrap {
         source ./venv/bin/activate
     fi ;
 
-
-    if [[ "${REQS}" -nt "${VENV}" ]] ; then
-        echo "[*] The requirements are newer than the virtual environment:"
-        echo "[**] Checking for a newer version of pip."
-
-        pip install --upgrade pip &>> ${LOG}
-        if [ $? -ne 0 ]; then echo "[!] Some error happened. Check ${OUT}."; mv ${LOG} ${OUT} ; return $? ; fi ;
-
-        echo "[**] Installing missing or updated dependencies."
-        pip install -r requirements.txt &>> ${LOG}
-        if [ $? -ne 0 ]; then echo "[!] Some error happened. Check ${OUT}."; mv ${LOG} ${OUT} ; return $? ; fi ;
-        touch -m ${VENV}
-    fi ;
+    portfolio.requirements 
 
     [ ! -e "${LOG}" ] || rm ${LOG}
     echo "[*] Done."
