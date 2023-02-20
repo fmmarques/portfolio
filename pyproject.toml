@@ -9,9 +9,12 @@ readme = "README.md"
 python = "^3.7"
 degiro-api = "^0.1"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+poetry-core = "^1.0.0"
 tox = "^3.27.1"
+flake8 = "^6.0.0"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
