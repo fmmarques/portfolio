@@ -1,8 +1,8 @@
-import Exception
 
 class CompanyAlreadyListed(Exception):
 
-    def __init__(self, stock_exchange: object, company: object, message: str, message_args: tuple = ()):
+    def __init__(self, stock_exchange: object, company: object, message: str,
+                 message_args: tuple = ()):
         super().__init__(message % message_args)
         self._message = message % message_args
         self._company = company
@@ -19,5 +19,3 @@ class CompanyAlreadyListed(Exception):
     @property
     def stock_exchange(self):
         return self._stock_exchange
-
-
