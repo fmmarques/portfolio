@@ -1,12 +1,22 @@
 #!/usr/bin/false
 
 from __future__ import annotations
+import logging
 from abc import ABC, abstractmethod
 
-from . import AbstractCompany
 
-class AbstractStock(ABC):
-    """ Represents a stock concept. A stock has a unique isin, a shared tick, a price """
+class AbstractListing(ABC):
+    """ Represents a listing concept. A stock has a unique isin, a shared tick, 
+        a price """
+
+    def __init__(self, currency = 0, isin = 0, price):
+        super()
+        self._currency = 0
+        self._isin = ""
+        self._price = 0.0
+        self._tick = ""
+        self._stock_exchange
+
 
     @property
     @abstractmethod
@@ -15,8 +25,8 @@ class AbstractStock(ABC):
         return self._currency
 
     @property
-    @abstractmethod
-    def currency(self, currency) -> AbstractStock:
+    @currency.setter
+    def currency(self, currency) -> AbstractListing:
         logging.debug("AbstractStock.currency: %s -> %s", self._currency, currency)
         self._currency = currency
         return self
@@ -28,10 +38,11 @@ class AbstractStock(ABC):
         return self._isin
 
     @property
-    @abstractmethod
-    def isin(self, isin: str) -> AbstractStock:
-        logging.debug("AbstractStock.isin: %s -> %s", self._isin, isin)
+    @isin.setter
+    def isin(self, isin: str) -> AbstractListing:
+        old_isin = self._isin
         self._isin = isin
+        logging.debug("AbstractStock.isin: %s -> %s", old_isin, isin)
         return self
 
     @property
@@ -41,8 +52,8 @@ class AbstractStock(ABC):
         return self._price
 
     @property
-    @abstractmethod
-    def price(self, price: float) -> AbstractStock
+    @price.setter
+    def price(self, price: float) -> AbstractListing:
         logging.debug("AbstractStock.price: %f -> %f", self._price, price)
         self._price = price
         return self
@@ -54,10 +65,10 @@ class AbstractStock(ABC):
         return self._tick
 
     @property
-    @abstractmethod
-    def tick(self, tick) -> AbstractStock:
+    @tick.setter
+    def tick(self, tick) -> AbstractListing:
         logging.debug("AbstractStock.tick: %s -> %s", self._tick, tick)
-        self._tick = _tick
+        self._tick = tick
         return self
 
 
